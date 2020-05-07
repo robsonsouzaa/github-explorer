@@ -26,6 +26,7 @@ interface Repository {
 interface Issue {
   id: number;
   title: string;
+  html_url: string;
   user: {
     login: string;
   };
@@ -39,11 +40,11 @@ const Repository: React.FC = () => {
 
   useEffect(() => {
     api.get(`repos/${params.repository}`).then((response) => {
-      console.log(response.data);
+      setRepository(response.data);
     });
 
     api.get(`repos/${params.repository}/issues`).then((response) => {
-      console.log(response.data);
+      setIssues(response.data);
     });
   }, [params.repository]);
 
@@ -51,46 +52,51 @@ const Repository: React.FC = () => {
     <>
       <Header>
         <img src={logoImg} alt="Github Explorer" />
-        <Link to="/repository/rocketseat/unform">
+        <Link to="/">
           <FiChevronLeft size={16} />
           Voltar
         </Link>
       </Header>
-      <RepositoryInfo>
-        <header>
-          <img
-            src="https://avatars0.githubusercontent.com/u/55188229?s=460&u=3710e9b65c49bcd1e49501bac8deac3e417c3e18&v=4"
-            alt="Robson Souza"
-          />
-          <div>
-            <strong>souzaex/dev-radar</strong>
-            <p>Descrição do repositório</p>
-          </div>
-        </header>
-        <ul>
-          <li>
-            <strong>1808</strong>
-            <span>Stars</span>
-          </li>
-          <li>
-            <strong>48</strong>
-            <span>Forks</span>
-          </li>
-          <li>
-            <strong>67</strong>
-            <span>Issues abertas</span>
-          </li>
-        </ul>
-      </RepositoryInfo>
-      <Issues>
-        <Link to="teste">
-          <div>
-            <strong>repository.full_name</strong>
-            <p>repository.description</p>
-          </div>
 
-          <FiChevronRight size={20} />
-        </Link>
+      {repository && (
+        <RepositoryInfo>
+          <header>
+            <img
+              src={repository.owner.avatar_url}
+              alt={repository.owner.login}
+            />
+            <div>
+              <strong>{repository.full_name}</strong>
+              <p>{repository.description}</p>
+            </div>
+          </header>
+          <ul>
+            <li>
+              <strong>{repository.stargazers_count}</strong>
+              <span>Stars</span>
+            </li>
+            <li>
+              <strong>{repository.forks_count}</strong>
+              <span>Forks</span>
+            </li>
+            <li>
+              <strong>{repository.open_issues_count}</strong>
+              <span>Issues abertas</span>
+            </li>
+          </ul>
+        </RepositoryInfo>
+      )}
+      <Issues>
+        {issues.map((item) => (
+          <a key={item.id} href={item.html_url}>
+            <div>
+              <strong>{item.title}</strong>
+              <p>{item.user.login}</p>
+            </div>
+
+            <FiChevronRight size={20} />
+          </a>
+        ))}
       </Issues>
     </>
   );
