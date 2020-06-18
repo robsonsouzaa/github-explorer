@@ -10,7 +10,10 @@
 
 **Github Explorer** é mais um projeto desenvolvido durante os estudos no bootcamp da Rocketseat. Consumindo a API do github é feito uma busca pelo repositório informado e o resultado é salvo no local sotrage. Ao clicar sobre o repositório são informadas algumas informações mais detalhadas sobre o repositório.
 
-<img src ="/src/assets/web.png">
+<img src ="/src/assets/git/repositorios.png">
+<br>
+
+<img src ="/src/assets/git/repositorios_detalhes.png">
 <br>
 
 ## :rocket: Tecnologias
@@ -35,4 +38,4 @@ Depois que o merge da sua pull request for feito, você pode deletar a sua branc
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 - **[MIT license](https://github.com/leoronne/BeTheHero/blob/master/LICENSE)**
 
-## 
+##
