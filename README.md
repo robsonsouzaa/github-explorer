@@ -1,9 +1,6 @@
 <h1 align="center">
   <img src ="/src/assets/logo.svg">
 </h1>
-<h2 align="center">
-  Github Explorer
-</h2>
 <br>
 
 ## Projeto 💻
